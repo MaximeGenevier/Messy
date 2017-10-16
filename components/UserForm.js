@@ -12,6 +12,7 @@ function UserForm(props){
                     value={props.user.name}
                     onInput={props.onUserChange}
                 />
+                <br/>
                 <label>Mot de passe:</label>
                 <input
                     name="password"
@@ -19,13 +20,15 @@ function UserForm(props){
                     value={props.user.password}
                     onInput={props.onUserChange}
                 />
+                <br/>
                 <label>Image:</label>
                 <input
                     name="image"
                     value={props.user.image}
                     onInput={props.onUserChange}
                 />
-                <input type="submit"/>
+                <br/>
+                <button type="submit">Valider</button>
             </form>
         </div>
     );

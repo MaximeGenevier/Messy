@@ -1,5 +1,6 @@
 var React = require("react");
 var UserForm = require("./UserForm");
+var server = require("./serverMethod");
 
 class UserContainer extends React.Component {
 
@@ -7,11 +8,12 @@ class UserContainer extends React.Component {
 
         super(props);
         this.state = {
+            token: "",
             user: {
+                id: "",
                 name: "",
                 password: "",
-                image: "",
-                token: ""
+                image: ""
             }
         };
 
@@ -33,8 +35,26 @@ class UserContainer extends React.Component {
 
     onFormSubmitted(event){
 
+        event.preventDefault();
+        console.log(this.state.user);
 
+        var body = { "name": this.state.user.name,
+             "image": this.state.user.image,
+             "password": this.state.user.password
+         }
 
+        var response = server.createAccount(body);
+
+        console.log(response);
+
+        this.setState({
+            token: response.token,
+            user: {
+                id : response.user.id
+            }
+        });
+
+        console.log(this.state.token);
     }
 
     render(){
