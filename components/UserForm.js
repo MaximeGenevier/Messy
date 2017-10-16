@@ -1,57 +1,35 @@
-class UserForm extends React.Component {
+var React = require("react");
 
-    constructor(pops){
+function UserForm(props){
 
-        super(props);
-        this.state = {
-            user: {
-                name: "",
-                password: "",
-                image: ""
-            }
-        };
-
-        this.updateUser = this.updateUser.bind(this);
-
-    }
-
-    updateUser(event){
-
-        this.setState({
-            user: {
-                [event.target.name]: event.target.value
-            }
-        });
-
-    }
-
-    render(){
-
-        var user = this.state.user;
-
-        return(
-            <form>
-                <label></label>
+    return(
+        <div>
+            <form onSubmit={props.onFormSubmitted}>
+                <label>Nom:</label>
                 <input
                     name="name"
-                    value={user.name}
-                    onInput={updateUser}
+                    type="text"
+                    value={props.user.name}
+                    onInput={props.onUserChange}
                 />
-                <label></label>
+                <label>Mot de passe:</label>
                 <input
                     name="password"
-                    value={user.password}
-                    onInput={updateUser}
+                    type="password"
+                    value={props.user.password}
+                    onInput={props.onUserChange}
                 />
-                <label></label>
+                <label>Image:</label>
                 <input
                     name="image"
-                    value={user.image}
-                    onInput={updateUser}
+                    value={props.user.image}
+                    onInput={props.onUserChange}
                 />
+                <input type="submit"/>
             </form>
-        );
-
-    }
+        </div>
+    );
 
 }
+
+module.exports = UserForm;

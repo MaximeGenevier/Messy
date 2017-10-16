@@ -34,8 +34,8 @@ class LoginForm extends React.Component {
                 <label></label>
                 <input
                     name="name"
-                    value={user.name}
-                    onInput={updateUser}
+                    value="user.name"
+                    onInput="updateUser"
                 />
                 <label></label>
                 <input
@@ -46,8 +46,8 @@ class LoginForm extends React.Component {
                 <label></label>
                 <input
                     name="image"
-                    value={user.image}
-                    onInput={updateUser}
+                    value="user.image}
+                    onInput="updateUser}
                 />
             </form>
         );
