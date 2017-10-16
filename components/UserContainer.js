@@ -43,13 +43,18 @@ class UserContainer extends React.Component {
              "password": this.state.user.password
          }
 
+        var token;
+        var id;
         var response = server.createAccount(body);
+
         console.log(response);
-        if(response != ""){
-            this.setState({
-                token: response.token
-            });
-        }
+
+        response.then(
+            this.setState(
+                token: response.token,
+                user: {
+                    id: response.user.id
+                }));
 
         console.log(this.state.token);
     }

@@ -7,7 +7,6 @@ function createAccount(body){
         }
     )
     .then(response => response.json())
-    .then((response) => { if(response.ok){return response; }})
     .catch((error) =>{ console.log("Request failed: ", error) ;})
 
 }
