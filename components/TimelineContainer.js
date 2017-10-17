@@ -17,7 +17,7 @@ class TimelineContainer extends React.Component {
 
     componentDidMount(){
         this.getTimeLine();
-        setInterval(this.getTimeLine,1000);
+        setInterval(this.getTimeLine,5000);
 
     }
 
@@ -26,7 +26,7 @@ class TimelineContainer extends React.Component {
             .getTimeLine(this.props.token)
             .then((response) => {
                 this.setState({
-                    timeline: response.sort()
+                    timeline: response
                 });
             });
 
