@@ -1,7 +1,10 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
+var jwt = require("jsonwebtoken");
 var UserContainer = require("./components/UserContainer");
 var LoginContainer = require("./components/LoginContainer");
+var AddMessageContainer = require("./components/AddMessageContainer");
+var TimelineContainer = require("./components/TimelineContainer");
 
 class Application extends React.Component{
 
@@ -10,7 +13,6 @@ class Application extends React.Component{
         super(props);
         this.state = {
             token: sessionStorage.getItem("token"),
-            isLogged: sessionStorage.getItem("isLogged"),
             user: {
                 id: sessionStorage.getItem("id"),
                 name: sessionStorage.getItem("name"),
@@ -25,7 +27,6 @@ class Application extends React.Component{
 
     updateUser(logged, id, name, image){
 
-        sessionStorage.setItem("isLogged", logged);
         sessionStorage.setItem("id", id);
         sessionStorage.setItem("name", name);
         sessionStorage.setItem("image", image);
@@ -45,13 +46,17 @@ class Application extends React.Component{
     render(){
 
         if(this.state.token){
-            if(this.state.isLogged == false){
-                return <LoginContainer userToken={this.state.token} updateUser={this.updateUser}/>;
-            }else if (this.state.isLogged == true) {
-
-            }
+            return  <div>
+                        <TimelineContainer token={this.state.token}/>
+                        <AddMessageContainer token={this.state.token}/>
+                    </div>
         }else{
-            return <UserContainer onUserLogged={this.storeToken}/>;
+            return <div>
+                        <UserContainer onUserLogged={this.storeToken}
+                            updateUser={this.updateUser}/><br/>
+                        <LoginContainer onUserLogged={this.storeToken}
+                            updateUser={this.updateUser}/>
+                   </div>;
         }
 
     }

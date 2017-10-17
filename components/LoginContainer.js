@@ -33,22 +33,21 @@ class LoginContainer extends React.Component{
     onFormSubmitted(event){
 
         event.preventDefault();
-        console.log(this.state.user);
 
         var body = {
             "name": this.state.user.name,
             "password": this.state.user.password
         }
 
-        var response = server.login(body, this.props.token);
+        var response = server.login(body, this.props.userToken);
 
         response.then((response) => {
 
+            this.props.onUserLogged(response.token);
             this.props.updateUser(true, response.user.id, response.user.name,
                 response.user.image);
 
         });
-
 
     }
 

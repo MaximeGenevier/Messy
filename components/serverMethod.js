@@ -15,20 +15,18 @@ function login(body, token){
 
     return fetch("https://messy.now.sh/authenticate",
         { headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer:" + token
-            }, method:"POST", body:body
+                "Content-Type": "application/json"
+            }, method:"POST", body:JSON.stringify(body)
         }
     )
     .then(response => response.json())
-    .then((response) => { return response;})
     .catch((error) =>{ console.log("Request failed: ", error) ;})
 
 }
 
-function getTimeLine(token, id){
-
-    return fetch("https://messy.now.sh/" + id + "/timeline",
+function getTimeLine(token){
+    console.log(token)
+    return fetch("https://messy.now.sh/u/timeline",
         { headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer:" + token
@@ -36,35 +34,34 @@ function getTimeLine(token, id){
         }
     )
     .then(response => response.json())
-    .then((response) => { return response;})
     .catch((error) =>{ console.log("Request failed: ", error) ;})
 
 }
 
-function createMessage(body, token, id){
+function createMessage(body, token){
 
-    return fetch("https://messy.now.sh/" + id + "/timeline",
+    return fetch("https://messy.now.sh/u/timeline",
         { headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer:" + token
-            }, method:"POST", body:body
+            }, method:"POST", body:JSON.stringify(body)
         }
     )
     .then(response => response.json())
-    .then((response) => { return response;})
     .catch((error) =>{ console.log("Request failed: ", error) ;})
 
 }
 
-function deleteMessage(token, id, idMsg){
+function deleteMessage(token, idMsg){
 
-    return fetch("https://messy.now.sh/" + id + "/timeline/" + idMsg,
+    return fetch("https://messy.now.sh/u/timeline/" + idMsg,
         { headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer:" + token
             }, method:"DELETE"
         }
-    ).then((response) => { return response;})
+    )
+    .then(response => response.json())
     .catch((error) =>{ console.log("Request failed: ", error) ;})
 
 }
