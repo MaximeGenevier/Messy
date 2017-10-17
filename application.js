@@ -10,10 +10,25 @@ class Application extends React.Component{
         super(props);
         this.state = {
             token: sessionStorage.getItem("token"),
-            isLogged: false
+            isLogged: sessionStorage.getItem("isLogged"),
+            user: {
+                id: sessionStorage.getItem("id"),
+                name: sessionStorage.getItem("name"),
+                image: sessionStorage.getItem("image")
+            }
         };
 
         this.storeToken = this.storeToken.bind(this);
+        this.updateUser = this.updateUser.bind(this);
+
+    }
+
+    updateUser(logged, id, name, image){
+
+        sessionStorage.setItem("isLogged", logged);
+        sessionStorage.setItem("id", id);
+        sessionStorage.setItem("name", name);
+        sessionStorage.setItem("image", image);
 
     }
 
@@ -31,9 +46,9 @@ class Application extends React.Component{
 
         if(this.state.token){
             if(this.state.isLogged == false){
-                return <LoginContainer userToken={this.state.token}/>;
+                return <LoginContainer userToken={this.state.token} updateUser={this.updateUser}/>;
             }else if (this.state.isLogged == true) {
-                
+
             }
         }else{
             return <UserContainer onUserLogged={this.storeToken}/>;

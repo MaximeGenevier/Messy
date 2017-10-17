@@ -4,9 +4,9 @@ function LoginForm(props){
 
     return(
         <div>
-            <form onSubmit="">
+            <form onSubmit={props.onFormSubmitted}>
                 <label>Nom: </label>
-                <input type="text" name="name"/>
+                <input type="text" name="name" onInput={props.onUserChange}/>
                 <label>Mot de passe: </label>
                 <input type="password" name="password" onInput={props.onUserChange}/>
                 <button type="submit">Connexion</button>
@@ -16,4 +16,4 @@ function LoginForm(props){
 
 }
 
-module.exports = LoginForm
+module.exports = LoginForm;
