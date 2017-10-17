@@ -36,7 +36,6 @@ class UserContainer extends React.Component {
     onFormSubmitted(event){
 
         event.preventDefault();
-        console.log(this.state.user);
 
         var body = { "name": this.state.user.name,
              "image": this.state.user.image,
@@ -49,14 +48,35 @@ class UserContainer extends React.Component {
 
         console.log(response);
 
-        response.then(
-            this.setState(
+        response.then((response) => {
+
+            this.props.onUserLogged(response.token);
+            this.setState({
                 token: response.token,
                 user: {
-                    id: response.user.id
-                }));
+                    id:response.user.id
+                }
+            });
+        });
 
-        console.log(this.state.token);
+    }
+
+    onConnexionFormSubmitted(event){
+
+        event.preventDefault();
+        console.log(this.state.user);
+
+        var body = {
+            "name": this.state.user.name,
+            "password": this.state.user.password
+        }
+
+        var response = server.login(body, this.state.token);
+
+        response.then(function(){
+
+        });
+
     }
 
     render(){
@@ -65,9 +85,6 @@ class UserContainer extends React.Component {
             onUserChange: this.onUserChange,
             onFormSubmitted: this.onFormSubmitted
         });
-        /*return(
-            <UserForm user={this.state.user}/>
-        );*/
 
     }
 

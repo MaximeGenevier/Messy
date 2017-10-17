@@ -1,57 +1,19 @@
-class LoginForm extends React.Component {
+var React = require("react");
 
-    constructor(pops){
+function LoginForm(props){
 
-        super(props);
-        this.state = {
-            user: {
-                name: "",
-                password: "",
-                image: ""
-            }
-        };
-
-        this.updateUser = this.updateUser.bind(this);
-
-    }
-
-    updateUser(event){
-
-        this.setState({
-            user: {
-                [event.target.name]: event.target.value
-            }
-        });
-
-    }
-
-    render(){
-
-        var user = this.state.user;
-
-        return(
-            <form>
-                <label></label>
-                <input
-                    name="name"
-                    value="user.name"
-                    onInput="updateUser"
-                />
-                <label></label>
-                <input
-                    name="password"
-                    value={user.password}
-                    onInput={updateUser}
-                />
-                <label></label>
-                <input
-                    name="image"
-                    value="user.image}
-                    onInput="updateUser}
-                />
+    return(
+        <div>
+            <form onSubmit="">
+                <label>Nom: </label>
+                <input type="text" name="name"/>
+                <label>Mot de passe: </label>
+                <input type="password" name="password" onInput={props.onUserChange}/>
+                <button type="submit">Connexion</button>
             </form>
-        );
-
-    }
+        </div>
+    );
 
 }
+
+module.exports = LoginForm
