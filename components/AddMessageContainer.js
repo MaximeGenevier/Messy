@@ -21,28 +21,20 @@ class AddMessageContainer extends React.Component {
     }
 
     onMessageChange(event){
-
         var message = this.state.message;
         message[event.target.name] = event.target.value;
 
         this.setState({
             message: message
         });
-
     }
 
     onFormSubmitted(event){
-
         event.preventDefault();
-
         var body = {
             message: this.state.message.message
         }
-
-        console.log(this.props.token);
-
         var response = server.createMessage(body, this.props.token);
-
         response.then((response) => {
 
             this.setState({
@@ -53,7 +45,6 @@ class AddMessageContainer extends React.Component {
             });
 
         });
-
     }
 
     render(){

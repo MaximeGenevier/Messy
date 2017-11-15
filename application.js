@@ -46,9 +46,13 @@ class Application extends React.Component{
     render(){
 
         if(this.state.token){
-            return  <div>
-                        <TimelineContainer token={this.state.token}/>
-                        <AddMessageContainer token={this.state.token}/>
+            return  <div class="panel panel-default">
+                        <div style={{overflow:"scroll", height:"650px"}} class="panel-body">
+                            <TimelineContainer token={this.state.token} user={this.state.user}/>
+                        </div>
+                        <div style={{height:"200px", border:"1px solid"}} class="panel-footer">
+                            <AddMessageContainer token={this.state.token}/>
+                        </div>
                     </div>
         }else{
             return <div>

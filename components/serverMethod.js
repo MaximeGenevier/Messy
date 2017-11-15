@@ -25,7 +25,6 @@ function login(body, token){
 }
 
 function getTimeLine(token){
-    console.log(token)
     return fetch("https://messy.now.sh/u/timeline",
         { headers: {
                 "Content-Type": "application/json",

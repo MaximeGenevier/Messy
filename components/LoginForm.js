@@ -4,12 +4,12 @@ function LoginForm(props){
 
     return(
         <div>
-            <form onSubmit={props.onFormSubmitted}>
+            <form onSubmit={props.onFormSubmitted} class="form-inline">
                 <label>Nom: </label>
                 <input type="text" name="name" onInput={props.onUserChange}/>
                 <label>Mot de passe: </label>
                 <input type="password" name="password" onInput={props.onUserChange}/>
-                <button type="submit">Connexion</button>
+                <button class="btn btn-default" type="submit">Connexion</button>
             </form>
         </div>
     );

@@ -4,13 +4,16 @@ function AddMessageForm(props){
 
     return(
         <div>
-            <form onSubmit={props.onFormSubmitted}>
-                <label>Message:</label>
-                <textarea name="message" maxlenght='250'
-                    onInput={props.onMessageChange}>
-                    Saisissez votre message...
-                </textarea>
-                <button type="submit">Envoyer</button>
+            <form onSubmit={props.onFormSubmitted} class="form-inline">
+                <div class="form-group">
+                    <label>Message:</label>
+                    <textarea name="message" maxlenght='250' style={{height:"150px", width:"900px"}}
+                        onInput={props.onMessageChange}
+                        class="form-control">
+                        Saisissez votre message...
+                    </textarea>
+                </div>
+                <button class="btn btn-default" type="submit">Envoyer</button>
             </form>
         </div>
     );

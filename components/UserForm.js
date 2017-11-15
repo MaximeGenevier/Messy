@@ -4,7 +4,7 @@ function UserForm(props){
 
     return(
         <div>
-            <form onSubmit={props.onFormSubmitted}>
+            <form onSubmit={props.onFormSubmitted} class="form-inline">
                 <label>Nom:</label>
                 <input
                     name="name"
